@@ -1,7 +1,3 @@
-## Geckotech Front End Developer Assigment 
-
-This project is created to show my coding skills as part of the Geckotech Fornt End Developer Interview Process
-
 This project is generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.3.
 
 ## Installation
