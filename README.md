@@ -1,2 +1,0 @@
-# beer-app
-Geckotech assignment 
