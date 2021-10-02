@@ -1,0 +1,26 @@
+<div>
+  <app-navbar></app-navbar>
+  <div class="container">
+    <div class="beer-container" *ngIf="beer">
+      <div class="content-container">
+        <div class="image-container">
+          <img class="beer-large"[src]='beer.image_url' [alt]='beer.name'/>
+        </div>
+        <div class="details">
+          <h2>{{beer.name | uppercase}} Details</h2>
+          <div>
+          <h3 class="tagline">{{beer.tagline}}</h3>
+          </div>
+          <p class="description">{{beer.description}}</p>
+          <p>
+            <strong> Alcohol by volume: </strong> {{beer.abv}}</p>
+        </div>
+      </div>
+      <div class="buttons-container">
+        <button (click)="goBack()" class="btn btn-muted">Back to search results</button>
+        <button (click)="showSuggestions()" class="btn btn-primary">Show other suggestions</button>
+      </div>
+    </div>
+  </div>
+</div>
+
