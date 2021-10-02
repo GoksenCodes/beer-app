@@ -1,4 +1,4 @@
-##Geckotech Front End Developer Assigment 
+## Geckotech Front End Developer Assigment 
 
 This project is created to show my coding skills as part of the Geckotech Fornt End Developer Interview Process
 
