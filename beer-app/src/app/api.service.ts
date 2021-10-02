@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-
 import { Beer } from './beer.model';
 
 
@@ -39,7 +37,7 @@ export class ApiService {
     );
   }
 
-  searchBeersByYeast(yeast: string): Observable<Beer[]> {
+  searchBeersByYeast(yeast: string | undefined): Observable<Beer[]> {
     return this.http.get<Beer[]>(`${this.punkUrl}/?yeast=${yeast}`).pipe(
       map(beers => beers.slice(0,3),
       catchError(this.handleError<Beer[]>('searchBeersByName', [])))

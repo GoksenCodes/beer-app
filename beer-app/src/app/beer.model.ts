@@ -1,3 +1,5 @@
+import { Ingredients } from "./ingredients.model";
+
 export interface Beer {
   id: number;
   name: string;
@@ -5,5 +7,5 @@ export interface Beer {
   description: string;
   abv: number;
   image_url: string;
-  yeast?: string
+  ingredients: Ingredients;
 }

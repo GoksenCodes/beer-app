@@ -1,0 +1,16 @@
+ul {
+  display: flex;
+  padding-top: 20px;
+  justify-content: space-between;
+  align-items: center;
+
+  li {
+    display: flex;
+    align-items: center;
+    margin-right: 50px;
+
+    img {
+      margin-right: 10px
+    }
+  }
+}

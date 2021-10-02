@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { BeerSearchComponent } from './beer-search/beer-search.component';
 import { BeerDetailComponent } from './beer-detail/beer-detail.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { SuggestedBeersComponent } from './beer-detail/suggested-beers/suggested-beers.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BeerSearchComponent,
     BeerDetailComponent,
-    NavbarComponent
+    NavbarComponent,
+    SuggestedBeersComponent
   ],
   imports: [
     BrowserModule,

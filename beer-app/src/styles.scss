@@ -37,3 +37,18 @@ body {
     background-color: #666;
   }
 }
+
+.beer {
+  &-large {
+    width: 100px;
+    height: auto;
+  }
+  &-small {
+    width: 20px;
+    height: auto;
+  }
+}
+
+a {
+  text-decoration: none;
+}
