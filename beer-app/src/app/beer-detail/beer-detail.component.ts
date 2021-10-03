@@ -18,7 +18,7 @@ export class BeerDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private apiService: ApiService,
     private location: Location,
-    router: Router
+    private router: Router
   ) {
     this.suggestedBeers = [];
     router.events.subscribe(val => {
