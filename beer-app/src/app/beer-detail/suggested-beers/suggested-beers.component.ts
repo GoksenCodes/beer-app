@@ -9,10 +9,6 @@ import { Router } from '@angular/router';
 })
 export class SuggestedBeersComponent implements OnInit {
   @Input() suggestedBeers: Beer []
-  @Output() clicked = new EventEmitter();
-  callParent(){
-    this.clicked.emit()
- }
 
   constructor(
     private router: Router
@@ -21,7 +17,6 @@ export class SuggestedBeersComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    console.log(this.suggestedBeers)
   }
 
 }

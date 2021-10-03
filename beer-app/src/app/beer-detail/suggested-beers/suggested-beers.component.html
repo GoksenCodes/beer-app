@@ -4,7 +4,7 @@
       <span>
         <img class="beer-small"[src]='suggestedBeer.image_url' [alt]='suggestedBeer.name'/>
       </span>
-      <a (click)="callParent()">
+      <a routerLink="/detail/{{suggestedBeer.id}}" onclick="this.disabled=true">
         {{suggestedBeer.name}}
       </a>
     </li>

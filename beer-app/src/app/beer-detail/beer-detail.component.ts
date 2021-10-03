@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { Beer } from '../beer.model';
 import { ApiService } from '../api.service';
@@ -17,9 +17,15 @@ export class BeerDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private apiService: ApiService,
-    private location: Location
+    private location: Location,
+    router: Router
   ) {
     this.suggestedBeers = [];
+    router.events.subscribe(val => {
+      if (location.path() != "") {
+          this.getBeer()
+      }
+    });
   }
 
   ngOnInit(): void {
@@ -29,17 +35,15 @@ export class BeerDetailComponent implements OnInit {
   getBeer(): void {
     const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
     this.apiService.getBeer(id)
-      .subscribe(beer => {
-        this.beer = beer[0]
-      console.log(this.beer.ingredients)});
+      .subscribe(beer => this.beer = beer[0]);
   }
 
   showSuggestions(): void {
     const yeast = this.beer?.ingredients.yeast
-    console.log(yeast)
-    this.apiService.searchBeersByYeast(yeast).subscribe(suggestedBeers => {
+    this.apiService.searchBeersByYeast(yeast)
+      .subscribe(suggestedBeers =>
       this.suggestedBeers = suggestedBeers.slice(0, 3)
-    console.log(suggestedBeers)})
+    )
   }
 
   goBack(): void {
