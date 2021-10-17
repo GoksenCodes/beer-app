@@ -27,17 +27,10 @@ export class BeerSearchComponent implements OnInit {
     private route: ActivatedRoute,
     ) {}
 
-  ngOnInit(): void {
-    this.beers$ = this.searchTerms.pipe(
-      debounceTime(500),
-      switchMap((name: string) => this.apiService.searchBeersByName(name)),
-    );
-    this.getBeersWithQueryParams();
-  }
-
   search(term: string): void {
+    console.log("search")
     this.searchTerms.next(term);
-    const queryParams: Params = { term };
+    const queryParams: Params = { beer: term };
 
     this.router.navigate(
       [],
@@ -48,8 +41,16 @@ export class BeerSearchComponent implements OnInit {
       });
   }
 
+  ngOnInit(): void {
+    this.beers$ = this.searchTerms.pipe(
+      debounceTime(500),
+      switchMap((name: string) => this.apiService.searchBeersByName(name)),
+    );
+    this.getBeersWithQueryParams()
+  }
+
   getBeersWithQueryParams(): void {
-    this.route.queryParams.subscribe(params => console.log(params));
+    this.route.queryParams.subscribe(params => this.beers$ = this.apiService.searchBeersByName(params.beer))
   }
 }
 

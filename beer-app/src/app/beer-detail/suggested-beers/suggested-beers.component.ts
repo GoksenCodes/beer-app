@@ -7,12 +7,11 @@ import { Beer } from 'src/app/beer.model';
   styleUrls: ['./suggested-beers.component.scss']
 })
 export class SuggestedBeersComponent implements OnInit {
-  @Input() suggestedBeers: Beer []
+  @Input() suggestedBeers!: Beer [];
+  @Input() randomBeerImage!: string;
 
   constructor(
-  ) {
-    this.suggestedBeers = [];
-   }
+  ) {}
 
   ngOnInit(): void {
   }

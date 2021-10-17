@@ -13,12 +13,15 @@ import { of } from 'rxjs';
 export class BeerDetailComponent implements OnInit {
   beer: Beer | undefined
   suggestedBeers: Beer [];
+  previousUrl: string = '';
+  isSuggestionsEnabled = false;
+  randomBeerImage = 'https://502brews.files.wordpress.com/2013/05/draft-beer-small.jpg'
 
   constructor(
     private route: ActivatedRoute,
     private apiService: ApiService,
     private location: Location,
-    private router: Router
+    private router: Router,
   ) {
     this.suggestedBeers = [];
     router.events.subscribe(val => {
@@ -33,12 +36,14 @@ export class BeerDetailComponent implements OnInit {
   }
 
   getBeer(): void {
-    const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
+    const id = Number(this.route.snapshot.paramMap.get('id'));
     this.apiService.getBeer(id)
       .subscribe(beer => this.beer = beer[0]);
   }
 
+
   showSuggestions(): void {
+    this.isSuggestionsEnabled = true;
     const yeast = this.beer?.ingredients.yeast
     this.apiService.searchBeersByYeast(yeast)
       .subscribe(suggestedBeers =>
@@ -46,8 +51,9 @@ export class BeerDetailComponent implements OnInit {
     )
   }
 
-  goBack(): void {
+  goBackToSearchResults(): void {
     this.location.back();
   }
 
 }
+
