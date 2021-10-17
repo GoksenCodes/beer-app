@@ -4,7 +4,7 @@
     <div class="beer-container" *ngIf="beer">
       <div class="content-container">
         <div class="image-container">
-          <img class="beer-large"[src]='beer.image_url' [alt]='beer.name'/>
+          <img class="beer-large" *ngIf="beer.image_url else defaultImage" [src]='beer.image_url' [alt]='beer.name'/>
         </div>
         <div class="details">
           <h2>{{beer.name | uppercase}} Details</h2>
@@ -17,17 +17,28 @@
         </div>
       </div>
       <div class="buttons-container">
-        <button routerLink="/" class="btn btn-muted">Back to search results</button>
-        <button onClick = "this.style.visibility= 'hidden';" (click)="showSuggestions()" class="btn btn-primary">Show other suggestions</button>
+        <button (click)="goBackToSearchResults()" [disabled]="isSuggestionsEnabled" class="btn btn-muted">Back to search results</button>
+        <ng-container *ngIf="!isSuggestionsEnabled else home">
+          <button onClick = "this.style.visibility= 'hidden';" (click)="showSuggestions()" class="btn btn-primary" [disabled]="isSuggestionsEnabled">Show other suggestions</button>
+        </ng-container>
       </div>
       <ng-container ngIf*="suggestedBeers">
         <app-suggested-beers
           [suggestedBeers]="suggestedBeers"
+          [randomBeerImage]="randomBeerImage"
         >
         </app-suggested-beers>
       </ng-container>
     </div>
   </div>
 </div>
+
+<ng-template #home>
+  <button routerLink="/" class="btn btn-muted">Home</button>
+</ng-template>
+
+<ng-template #defaultImage>
+  <img class="beer-large" [src]='randomBeerImage' alt='random beer image'/>
+</ng-template>
 
 

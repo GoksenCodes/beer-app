@@ -40,13 +40,13 @@ export class ApiService {
   searchBeersByYeast(yeast: string | undefined): Observable<Beer[]> {
     return this.http.get<Beer[]>(`${this.punkUrl}/?yeast=${yeast}`).pipe(
       map(beers => beers.slice(0,3),
-      catchError(this.handleError<Beer[]>('searchBeersByName', [])))
+      catchError(this.handleError<Beer[]>('searchBeersByYeast', [])))
     );
   }
 
   searchBeersByAbvLt(maxAbv: number): Observable<Beer[]> {
     return this.http.get<Beer[]>(`${this.punkUrl}/?abv_lt=${maxAbv}`).pipe(
-      catchError(this.handleError<Beer[]>('searchBeersByName', []))
+      catchError(this.handleError<Beer[]>('searchBeersByAbvLt', []))
     );
   }
 

@@ -30,6 +30,11 @@ body {
     cursor: pointer;
   }
 
+  &:disabled {
+    opacity: 0.3;
+    cursor: auto;
+  }
+
   &-primary {
     background-color: #ec931f;
   }
@@ -52,3 +57,4 @@ body {
 a {
   text-decoration: none;
 }
+

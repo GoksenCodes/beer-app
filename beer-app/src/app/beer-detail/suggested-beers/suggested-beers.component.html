@@ -2,7 +2,7 @@
   <ul>
     <li *ngFor="let suggestedBeer of suggestedBeers" >
       <span>
-        <img class="beer-small"[src]='suggestedBeer.image_url' [alt]='suggestedBeer.name'/>
+        <img class="beer-small" *ngIf="suggestedBeer.image_url else defaultImage"[src]='suggestedBeer.image_url' [alt]='suggestedBeer.name'/>
       </span>
       <a routerLink="/detail/{{suggestedBeer.id}}" onclick="this.disabled=true">
         {{suggestedBeer.name}}
@@ -10,3 +10,7 @@
     </li>
   </ul>
 </div>
+
+<ng-template #defaultImage>
+  <img class="beer-small" [src]='randomBeerImage' alt='random beer image'/>
+</ng-template>
